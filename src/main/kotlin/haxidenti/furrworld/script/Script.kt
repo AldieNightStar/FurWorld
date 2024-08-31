@@ -1,7 +1,7 @@
 package haxidenti.furrworld.script
 
 import haxidenti.furrworld.world.Place
-import haxidenti.furrworld.world.Player
+import haxidenti.furrworld.player.Player
 
 interface Script {
     fun callOnTrigger(place: Place, who: Player, x: Int, y: Int): Boolean

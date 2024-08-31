@@ -1,4 +1,6 @@
-package haxidenti.furrworld.world
+package haxidenti.furrworld.player
+
+import haxidenti.furrworld.world.Place
 
 const val PLAYER_MAX_ITEMS = 32
 
@@ -6,9 +8,8 @@ class Player(
     var place: Place,
     var x: Int,
     var y: Int,
+    val items: PlayerInventory = PlayerInventory()
 ) {
-    val items = mutableListOf<Int>()
-
     fun walk(x: Int, y: Int): Boolean {
         if (!place.isWalkable(x, y)) return false
         if (place.script.callOnMove(place, this, x, y)) {
