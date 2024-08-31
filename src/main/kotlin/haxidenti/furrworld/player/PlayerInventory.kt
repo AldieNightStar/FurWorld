@@ -1,9 +1,8 @@
 package haxidenti.furrworld.player
 
 class PlayerInventory(
-    val items: MutableList<Int> = mutableListOf()
-)
-{
+    val items: MutableList<Int> = mutableListOf(),
+) {
     val size get() = items.size
 
     fun add(item: Int) {
