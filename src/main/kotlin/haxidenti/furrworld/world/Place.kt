@@ -6,7 +6,7 @@ const val PLACE_SIZE = 256
 
 class Place(
     val registry: CellRegistry,
-    val script: Script,
+    val script: Script = Script.DEFAULT,
 ) {
     val data = Array(PLACE_SIZE) { Array(PLACE_SIZE) { Cell.VOID } }
 
