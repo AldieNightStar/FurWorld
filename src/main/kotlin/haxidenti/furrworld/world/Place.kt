@@ -1,12 +1,12 @@
 package haxidenti.furrworld.world
 
-import haxidenti.furrworld.script.Script
+import haxidenti.furrworld.script.PlaceScript
 
 const val PLACE_SIZE = 256
 
 class Place(
     val registry: CellRegistry,
-    val script: Script = Script.DEFAULT,
+    val script: PlaceScript = PlaceScript.DEFAULT,
 ) {
     val data = Array(PLACE_SIZE) { Array(PLACE_SIZE) { Cell.VOID } }
 
