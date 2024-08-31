@@ -3,7 +3,7 @@ package haxidenti.furrworld.world
 const val PLAYER_MAX_ITEMS = 32
 
 class Player(
-    val place: Place,
+    var place: Place,
     var x: Int,
     var y: Int,
 ) {
