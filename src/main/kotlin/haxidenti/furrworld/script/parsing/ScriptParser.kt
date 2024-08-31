@@ -10,8 +10,22 @@ object ScriptParser {
 
     private fun parseIter(commandMap: Map<String, Int>, iter: Iterator<String>): ParsedToken? {
         val command = iter.poll() ?: return null
+        // Args count determine how much arguments needed
+        // If its -1 then until 'end' is met
         val argsCount = commandMap[command] ?: 0
-        val args = (0 until argsCount).mapNotNull { parseIter(commandMap, iter) }
+        val args = mutableListOf<ParsedToken>()
+        if (argsCount == -1) {
+            while (true) {
+                val subToken = parseIter(commandMap, iter) ?: break
+                if (subToken.name == "end") break
+                args.add(subToken)
+            }
+        } else {
+            for (i in 0 until argsCount) {
+                args.add(parseIter(commandMap, iter) ?: break)
+            }
+            return ParsedToken(command, args)
+        }
         return ParsedToken(command, args)
     }
 
@@ -26,5 +40,5 @@ object ScriptParser {
 
 data class ParsedToken(
     val name: String,
-    val args: List<ParsedToken> = listOf()
+    val args: List<ParsedToken> = listOf(),
 )
