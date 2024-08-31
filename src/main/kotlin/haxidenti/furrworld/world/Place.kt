@@ -1,41 +1,60 @@
 package haxidenti.furrworld.world
 
-val PLACE_CHUNKS_COUNT = 16
+import haxidenti.furrworld.script.Script
 
-class Place {
-    val chunks = Array(PLACE_CHUNKS_COUNT) { Array(PLACE_CHUNKS_COUNT) { Chunk() } }
+const val PLACE_SIZE = 256
 
-    private fun validateChunkPos(x: Int, y: Int) {
-        if (x < 0 || y < 0 || x >= PLACE_CHUNKS_COUNT || y >= PLACE_CHUNKS_COUNT)
-            throw RuntimeException("Chunk is out of range: $PLACE_CHUNKS_COUNT")
-    }
-
-    private fun validatePos(x: Int, y: Int) {
-        val size = size()
-        if (x < 0 || y < 0 || x >= size || y >= size)
-            throw RuntimeException("Cell position in the Place is out of range: $size")
-    }
-
-    fun chunkAt(x: Int, y: Int): Chunk {
-        validateChunkPos(x, y)
-        return chunks[y][x]
-    }
+class Place(
+    val registry: CellRegistry,
+    val script: Script,
+) {
+    val data = Array(PLACE_SIZE) { Array(PLACE_SIZE) { Cell.VOID } }
 
     fun getCell(x: Int, y: Int): Cell {
         validatePos(x, y)
-        val cx = x / PLACE_CHUNKS_COUNT
-        val cy = y / PLACE_CHUNKS_COUNT
-        return chunkAt(cx, cy).getAt(x % PLACE_CHUNKS_COUNT, y % PLACE_CHUNKS_COUNT)
+        return data[y][x]
     }
 
-    fun setCell(x: Int, y: Int, cell: Cell): Boolean {
+    fun setCell(x: Int, y: Int, cell: Cell) {
         validatePos(x, y)
-        val cx = x / PLACE_CHUNKS_COUNT
-        val cy = y / PLACE_CHUNKS_COUNT
-        return chunkAt(cx, cy).setAt(x % PLACE_CHUNKS_COUNT, y % PLACE_CHUNKS_COUNT, cell)
+        data[y][x] = cell
     }
 
-    fun size(): Int {
-        return PLACE_CHUNKS_COUNT * CHUNK_SIZE
+    fun removeObject(x: Int, y: Int): Int {
+        val oldCell = getCell(x, y)
+        setCell(x, y, Cell(oldCell.floorId, 0))
+        return oldCell.objectId
+    }
+
+    fun setObject(x: Int, y: Int, objectId: Int) {
+        setCell(x, y, Cell(getCell(x, y).floorId, objectId))
+    }
+
+    fun isFree(x: Int, y: Int): Boolean {
+        val cell = getCell(x, y)
+        if (!cell.floorInfo(registry).walkable) return false
+        if (cell.objectId > 0) return false
+        return true
+    }
+
+    fun isWalkable(x: Int, y: Int): Boolean {
+        val floorOk = getCell(x, y).floorInfo(registry).walkable
+        val objectOk = getCell(x, y).objectInfo(registry).walkable
+        return floorOk && objectOk
+    }
+
+    fun isTriggerable(x: Int, y: Int): Boolean {
+        val floorOk = getCell(x, y).floorInfo(registry).triggerable
+        val objectOk = getCell(x, y).objectInfo(registry).triggerable
+        return floorOk || objectOk
+    }
+
+    fun isPickable(x: Int, y: Int): Boolean {
+        return getCell(x, y).objectInfo(registry).triggerable
+    }
+
+    private fun validatePos(x: Int, y: Int) {
+        if (x < 0 || y < 0 || x >= PLACE_SIZE || y >= PLACE_SIZE)
+            throw RuntimeException("Cell position in the Place is out of range: $PLACE_SIZE")
     }
 }
