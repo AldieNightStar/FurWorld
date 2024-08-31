@@ -17,7 +17,7 @@ object ScriptParser {
         if (argsCount == -1) {
             while (true) {
                 val subToken = parseIter(commandMap, iter) ?: break
-                if (subToken.name == "end") break
+                if (subToken.value == "end") break
                 args.add(subToken)
             }
         } else {
@@ -39,6 +39,6 @@ object ScriptParser {
 }
 
 data class ParsedToken(
-    val name: String,
+    val value: String,
     val args: List<ParsedToken> = listOf(),
 )

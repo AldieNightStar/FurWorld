@@ -14,10 +14,10 @@ class ScriptParserTest {
         ), testData)
 
         assertEquals(2, parsed.size)
-        assertEquals("position", parsed[0].name)
+        assertEquals("position", parsed[0].value)
         assertEquals(2, parsed[0].args.size)
-        assertEquals("at", parsed[0].args[0].name)
-        assertEquals("center", parsed[0].args[1].name)
+        assertEquals("at", parsed[0].args[0].value)
+        assertEquals("center", parsed[0].args[1].value)
     }
 
     @Test
@@ -29,7 +29,7 @@ class ScriptParserTest {
         ), testData)
 
         assertEquals(2, parsed.size)
-        assertEquals("code", parsed[0].name)
-        assertEquals("1", parsed[1].name)
+        assertEquals("code", parsed[0].value)
+        assertEquals("1", parsed[1].value)
     }
 }
