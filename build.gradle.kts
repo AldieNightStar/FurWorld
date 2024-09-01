@@ -27,6 +27,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$CORO_VER")
 
     implementation("io.javalin:javalin:6.2.0")
+    implementation("com.google.code.gson:gson:2.11.0")
 }
 
 application {

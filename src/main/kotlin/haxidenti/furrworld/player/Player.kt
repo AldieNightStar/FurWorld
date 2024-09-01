@@ -1,11 +1,13 @@
 package haxidenti.furrworld.player
 
+import haxidenti.furrworld.image.TextImage
 import haxidenti.furrworld.world.Place
 
 const val PLAYER_MAX_ITEMS = 32
 
 class Player(
     var place: Place,
+    var icon: TextImage,
     var x: Int,
     var y: Int,
     val items: PlayerInventory = PlayerInventory()
