@@ -1,7 +1,7 @@
 package haxidenti.furrworld
 
 import haxidenti.furrworld.api.PlaceController
-import haxidenti.furrworld.image.TextImage
+import haxidenti.furrworld.image.ByteImage
 import haxidenti.furrworld.util.for2d
 import haxidenti.furrworld.world.*
 import io.javalin.Javalin
@@ -18,7 +18,7 @@ fun main() {
             walkable = true,
             triggerable = false,
             pickable = false,
-            image = TextImage(16, 16)
+            image = ByteImage()
         )
     )
 

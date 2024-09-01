@@ -1,6 +1,6 @@
 package haxidenti.furrworld.world
 
-import haxidenti.furrworld.image.TextImage
+import haxidenti.furrworld.image.ByteImage
 
 class CellRegistry {
     private val map = mutableMapOf<Int, CellInfo>()
@@ -14,20 +14,22 @@ class CellRegistry {
     }
 
     fun all() = map.entries
+
+    val size get() = map.size
 }
 
 class CellInfo(
     val walkable: Boolean,
     val triggerable: Boolean,
     val pickable: Boolean,
-    val image: TextImage,
+    val image: ByteImage,
 ) {
     companion object {
         val DEFAULT = CellInfo(
             walkable = true,
             triggerable = false,
             pickable = false,
-            image = TextImage.EMPTY
+            image = ByteImage.EMPTY
         )
     }
 }

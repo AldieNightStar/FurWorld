@@ -9,16 +9,16 @@ class PlaceController(
 ) {
     fun serve(j: Javalin) {
         j.get("/api/place/{name}", ::getPlace)
-        j.get("/api/place/{name}/cellImages", ::getPlaceCellImages)
+        j.get("/api/place/{name}/cells", ::getCells)
     }
 
     fun getPlace(c: Context) {
         val place = placeMap[c.pathParam("name")]
-        c.result(BinaryMapper.placeToBinary(place))
+        c.result(BinaryMapper.place(place))
     }
 
-    fun getPlaceCellImages(c: Context) {
+    fun getCells(c: Context) {
         val place = placeMap[c.pathParam("name")]
-        c.result(JsonMapper.cellRegistryToJson(place.registry).toString())
+        c.result(BinaryMapper.cellRegistry(place.registry))
     }
 }

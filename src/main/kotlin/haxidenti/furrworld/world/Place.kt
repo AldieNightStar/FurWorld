@@ -1,5 +1,6 @@
 package haxidenti.furrworld.world
 
+import haxidenti.furrworld.api.exception.GameException
 import haxidenti.furrworld.script.PlaceScript
 
 const val PLACE_SIZE = 256
@@ -55,6 +56,6 @@ class Place(
 
     private fun validatePos(x: Int, y: Int) {
         if (x < 0 || y < 0 || x >= PLACE_SIZE || y >= PLACE_SIZE)
-            throw RuntimeException("Cell position in the Place is out of range: $PLACE_SIZE")
+            throw GameException("Cell position in the Place is out of range: $PLACE_SIZE")
     }
 }
