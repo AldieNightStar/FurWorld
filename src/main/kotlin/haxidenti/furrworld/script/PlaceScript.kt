@@ -6,8 +6,8 @@ import haxidenti.furrworld.player.Player
 interface PlaceScript {
     fun callOnTrigger(place: Place, who: Player, x: Int, y: Int): Boolean
     fun callOnMove(place: Place, who: Player, x: Int, y: Int): Boolean
-    fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean
-    fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean
+    fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Short): Boolean
+    fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Short): Boolean
     fun getSourceCode(): String
 
     companion object {
@@ -17,8 +17,8 @@ interface PlaceScript {
         val DEFAULT = object : PlaceScript {
             override fun callOnTrigger(place: Place, who: Player, x: Int, y: Int): Boolean = true
             override fun callOnMove(place: Place, who: Player, x: Int, y: Int): Boolean = true
-            override fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = true
-            override fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = true
+            override fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Short): Boolean = true
+            override fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Short): Boolean = true
             override fun getSourceCode() = ""
         }
 
@@ -28,8 +28,8 @@ interface PlaceScript {
         val READONLY = object : PlaceScript {
             override fun callOnTrigger(place: Place, who: Player, x: Int, y: Int): Boolean = false
             override fun callOnMove(place: Place, who: Player, x: Int, y: Int): Boolean = true
-            override fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = false
-            override fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = false
+            override fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Short): Boolean = false
+            override fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Short): Boolean = false
             override fun getSourceCode() = ""
         }
     }

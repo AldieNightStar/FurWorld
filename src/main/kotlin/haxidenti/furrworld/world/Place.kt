@@ -21,13 +21,13 @@ class Place(
         data[y][x] = cell
     }
 
-    fun removeObject(x: Int, y: Int): Int {
+    fun removeObject(x: Int, y: Int): Short {
         val oldCell = getCell(x, y)
         setCell(x, y, Cell(oldCell.floorId, 0))
         return oldCell.objectId
     }
 
-    fun setObject(x: Int, y: Int, objectId: Int) {
+    fun setObject(x: Int, y: Int, objectId: Short) {
         setCell(x, y, Cell(getCell(x, y).floorId, objectId))
     }
 

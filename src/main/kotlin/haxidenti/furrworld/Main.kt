@@ -27,7 +27,10 @@ fun main() {
 
     // Spawn random tiles
     for2d(PLACE_SIZE, PLACE_SIZE) { x, y ->
-        place.setCell(x, y, Cell(Random.nextInt(32), Random.nextInt(32)))
+        place.setCell(x, y, Cell(
+            Random.nextInt(32).toShort(),
+            Random.nextInt(32).toShort())
+        )
     }
 
     val placeMap = PlaceMap()

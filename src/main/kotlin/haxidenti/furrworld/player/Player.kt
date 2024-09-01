@@ -41,7 +41,7 @@ class Player(
         }
     }
 
-    fun putDown(x: Int, y: Int, item: Int): Boolean {
+    fun putDown(x: Int, y: Int, item: Short): Boolean {
         if (item !in items) return false
         if (!place.isFree(x, y)) return false
         if (place.script.callOnPut(place, this, x, y, item)) {

@@ -3,13 +3,13 @@ package haxidenti.furrworld.world
 import haxidenti.furrworld.image.ByteImage
 
 class CellRegistry {
-    private val map = mutableMapOf<Int, CellInfo>()
+    private val map = mutableMapOf<Short, CellInfo>()
 
-    fun register(id: Int, info: CellInfo) {
+    fun register(id: Short, info: CellInfo) {
         map[id] = info
     }
 
-    fun info(id: Int): CellInfo {
+    fun info(id: Short): CellInfo {
         return map[id] ?: CellInfo.DEFAULT
     }
 
