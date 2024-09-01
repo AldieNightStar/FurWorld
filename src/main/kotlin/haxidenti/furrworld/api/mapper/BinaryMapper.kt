@@ -1,4 +1,4 @@
-package haxidenti.furrworld.api
+package haxidenti.furrworld.api.mapper
 
 import haxidenti.furrworld.image.BYTE_IMAGE_SIZE
 import haxidenti.furrworld.image.ByteImage
@@ -9,11 +9,12 @@ import haxidenti.furrworld.world.PLACE_SIZE
 import haxidenti.furrworld.world.Place
 import java.nio.ByteBuffer
 
+private const val PLACE_LEN = 2 + (PLACE_SIZE * PLACE_SIZE * 4)
 private val BYTE_IMAGE_LEN = BYTE_IMAGE_SIZE * BYTE_IMAGE_SIZE
 private val CELL_INFO_LEN = 3 + BYTE_IMAGE_LEN
 
 object BinaryMapper {
-    fun place(place: Place) = binaryOf(2 + (PLACE_SIZE * PLACE_SIZE * 4)) {
+    fun place(place: Place) = binaryOf(PLACE_LEN) {
         // First two bytes is place size
         putShort(PLACE_SIZE.toShort())
 

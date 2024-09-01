@@ -8,6 +8,7 @@ interface PlaceScript {
     fun callOnMove(place: Place, who: Player, x: Int, y: Int): Boolean
     fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean
     fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean
+    fun getSourceCode(): String
 
     companion object {
         /**
@@ -18,6 +19,7 @@ interface PlaceScript {
             override fun callOnMove(place: Place, who: Player, x: Int, y: Int): Boolean = true
             override fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = true
             override fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = true
+            override fun getSourceCode() = ""
         }
 
         /**
@@ -28,6 +30,7 @@ interface PlaceScript {
             override fun callOnMove(place: Place, who: Player, x: Int, y: Int): Boolean = true
             override fun callOnPick(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = false
             override fun callOnPut(place: Place, who: Player, x: Int, y: Int, item: Int): Boolean = false
+            override fun getSourceCode() = ""
         }
     }
 }

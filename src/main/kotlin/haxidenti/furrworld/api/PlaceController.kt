@@ -1,5 +1,6 @@
 package haxidenti.furrworld.api
 
+import haxidenti.furrworld.api.mapper.BinaryMapper
 import haxidenti.furrworld.world.PlaceMap
 import io.javalin.Javalin
 import io.javalin.http.Context
