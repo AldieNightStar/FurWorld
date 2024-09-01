@@ -2,12 +2,11 @@ package haxidenti.furrworld
 
 import haxidenti.furrworld.api.PlaceController
 import haxidenti.furrworld.image.TextImage
-import haxidenti.furrworld.world.CellInfo
-import haxidenti.furrworld.world.CellRegistry
-import haxidenti.furrworld.world.Place
-import haxidenti.furrworld.world.PlaceMap
+import haxidenti.furrworld.util.for2d
+import haxidenti.furrworld.world.*
 import io.javalin.Javalin
 import io.javalin.http.staticfiles.Location
+import kotlin.random.Random
 
 fun main() {
     val reg = CellRegistry()
@@ -25,6 +24,11 @@ fun main() {
 
     // Testing place
     val place = Place(reg)
+
+    // Spawn random tiles
+    for2d(PLACE_SIZE, PLACE_SIZE) { x, y ->
+        place.setCell(x, y, Cell(Random.nextInt(32), Random.nextInt(32)))
+    }
 
     val placeMap = PlaceMap()
     placeMap.places["Start"] = place

@@ -10,14 +10,6 @@ import haxidenti.furrworld.world.*
 val GSON = Gson()
 
 object JsonMapper {
-    fun placeToJson(place: Place) = ofObject {
-        for (y in 0 until PLACE_SIZE) {
-            for (x in 0 until PLACE_SIZE) {
-                add("$x:$y", cellToJson(place.getCell(x, y)))
-            }
-        }
-    }
-
     fun cellRegistryToJson(reg: CellRegistry) = ofObject {
         for ((id, info) in reg.all()) {
             add("$id", cellInfoToJson(info))

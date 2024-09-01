@@ -14,7 +14,7 @@ class PlaceController(
 
     fun getPlace(c: Context) {
         val place = placeMap[c.pathParam("name")]
-        c.result(JsonMapper.placeToJson(place).toString())
+        c.result(BinaryMapper.placeToBinary(place))
     }
 
     fun getPlaceCellImages(c: Context) {
